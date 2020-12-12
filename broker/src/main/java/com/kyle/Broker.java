@@ -23,6 +23,9 @@ public class Broker {
    private Selector selector = null;
    private SocketChannel sc = null;
 
+   private volatile boolean marketsRetrieve = false;
+   private volatile boolean validMarket = false;
+
    ExecutorService executor = Executors.newCachedThreadPool();
    UserInterface ui = new UserInterface(this);
    public Broker() {
@@ -154,6 +157,22 @@ public class Broker {
       return sc;
    }
 
+   public void setMarketsRetrieve(boolean marketsRetrieve) {
+      this.marketsRetrieve = marketsRetrieve;
+   }
+
+   public boolean getMarketsRetrieve() {
+      return marketsRetrieve;
+   }
+
+   public void setValidMarket(boolean validMarket) {
+      this.validMarket = validMarket;
+   }
+
+   public boolean getValidMarket() {
+      return validMarket;
+   }
+
    public void sendMessage(String msg) {
       ByteBuffer bb = ByteBuffer.wrap(msg.getBytes());
       try {
@@ -162,4 +181,6 @@ public class Broker {
          System.out.println(e);
       }
    }
+
+
 }

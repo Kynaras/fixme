@@ -19,14 +19,23 @@ public class InfoMessages extends MessageHandler {
             } else {
                 String msg = "These are the markets currently available:\n";
                 Iterator<Map.Entry<String, SelectionKey>> iterator = router.getMarkets().entrySet().iterator();
-                    while (iterator.hasNext()) {
-                        Map.Entry<String, SelectionKey> entry = iterator.next();
-                        msg += entry.getKey();
-                        msg += " market\n";
-                    }
-                    System.out.println("Gotcha!");
-                    router.sendMessage(msg, key);
+                while (iterator.hasNext()) {
+                    Map.Entry<String, SelectionKey> entry = iterator.next();
+                    msg += entry.getKey();
+                    msg += " market\n";
+                }
+                System.out.println("Gotcha!");
+                router.sendMessage(msg, key);
             }
+        } else if (message.contains("List good for market:")) {
+           String [] array = message.split(":");
+           if (router.getMarkets().containsKey(array[1].trim())) {
+               router.sendMessage("List your instruments for:" + array[2], router.getMarkets().get(array[1].trim()));
+           } else {
+               router.sendMessage("No such market exists", key);
+           }
+        } else if (nextHandler != null) {
+            nextHandler.handleMessage(message, key);
         }
     }
 }
