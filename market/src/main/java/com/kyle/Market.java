@@ -9,11 +9,7 @@ import java.util.*;
 import com.kyle.handlers.Handlers;
 
 public class Market {
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/fixme";
-
-    static final String USER = "root";
-    static final String PASS = "admin";
+    
 
     private static BufferedReader input = null;
     private Handlers messageHandlers = new Handlers(this);
