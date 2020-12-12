@@ -118,4 +118,8 @@ public class Router {
     public void addMarket(String id, SelectionKey key) {
         markets.put(id, key);
     }
+
+    public Map<String, SelectionKey> getMarkets() {
+        return markets;
+    }
 }

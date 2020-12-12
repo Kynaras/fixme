@@ -5,11 +5,14 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.sound.midi.SysexMessage;
 
 import com.kyle.handlers.Handlers;
 import com.kyle.handlers.sendMessage;
+import com.kyle.userinterface.UserInterface;
 
 public class Broker {
    private static BufferedReader input = null;
@@ -20,15 +23,19 @@ public class Broker {
    private Selector selector = null;
    private SocketChannel sc = null;
 
+   ExecutorService executor = Executors.newCachedThreadPool();
+   UserInterface ui = new UserInterface(this);
    public Broker() {
       // TODO
    }
+
 
    public void mainBroker() throws Exception {
       // try {
       System.out.println(
             "Hello, I am your friendly Broker. Please wait a moment while I set things up and connect to the Router");
       socketSetup();
+      executor.submit(ui);
       checkSelector();
       // } catch (IOException e) {
       // System.out.println(e);

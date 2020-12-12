@@ -6,6 +6,7 @@ import com.kyle.Router;
 
 public class Handlers {
     AdminMessages adminMessages;
+    InfoMessages infoMessages;
 
     public Handlers(Router router) {
         setup(router);
@@ -13,7 +14,9 @@ public class Handlers {
 
     public void setup(Router router) {
         adminMessages = new AdminMessages(router);
-        adminMessages.setNextHandler(null);
+        infoMessages = new InfoMessages(router);
+        adminMessages.setNextHandler(infoMessages);
+        infoMessages.setNextHandler(null);
     }
 
     public void handleMessage(String message, SelectionKey key){
