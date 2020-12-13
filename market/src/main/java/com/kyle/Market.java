@@ -119,7 +119,7 @@ public class Market {
 
     public void socketSetup() {
         try {
-            InetSocketAddress addr = new InetSocketAddress(InetAddress.getByName("localhost"), 5000);
+            InetSocketAddress addr = new InetSocketAddress(InetAddress.getByName("localhost"), 5001);
             selector = Selector.open();
             sc = SocketChannel.open();
             sc.configureBlocking(false);

@@ -18,7 +18,9 @@ public class Router {
     private Handlers messageHandlers = new Handlers(this);
     Selector selector;
     ServerSocketChannel serverSocketChannel;
+    ServerSocketChannel serverSocketChannel2;
     SelectionKey key = null;
+    SocketChannel errorSc;
     idGen idGen = new idGen();
     Map<String, SelectionKey> brokers = new HashMap<>();
     Map<String, SelectionKey> markets = new HashMap<>();
@@ -39,27 +41,40 @@ public class Router {
             serverSocketChannel.configureBlocking(false);
             InetAddress ip = InetAddress.getByName("localhost");
             serverSocketChannel.bind(new InetSocketAddress(ip, 5000));
-            int ops = serverSocketChannel.validOps();
+            // int ops = serverSocketChannel.validOps();
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+
+            this.serverSocketChannel2 = ServerSocketChannel.open();
+            serverSocketChannel2.configureBlocking(false);
+            serverSocketChannel2.bind(new InetSocketAddress(ip, 5001));
+            serverSocketChannel2.register(selector, SelectionKey.OP_ACCEPT);
         } catch (IOException e) {
             System.out.println(e);
         }
     }
 
     public void startServer() {
-        try {
-            while (true) {
+        while (true) {
+            // try {
+                
+            //     Thread.sleep(2000);
+            // } catch (Exception e) {
+            //     //TODO: handle exception
+            // }
+            try {
                 if (brokers != null) {
                     System.out.println("Dela");
-                    // Iterator<Map.Entry<String, SelectionKey>> iterator = brokers.entrySet().iterator();
+                    // Iterator<Map.Entry<String, SelectionKey>> iterator =
+                    // brokers.entrySet().iterator();
                     // while (iterator.hasNext()) {
-                    //     Map.Entry<String, SelectionKey> entry = iterator.next();
-                    //     System.out.println(entry.getKey() + ":" + entry.getValue());
+                    // Map.Entry<String, SelectionKey> entry = iterator.next();
+                    // System.out.println(entry.getKey() + ":" + entry.getValue());
                     // }
-                    // Iterator<Map.Entry<String, SelectionKey>> iteratora = markets.entrySet().iterator();
+                    // Iterator<Map.Entry<String, SelectionKey>> iteratora =
+                    // markets.entrySet().iterator();
                     // while (iteratora.hasNext()) {
-                    //     Map.Entry<String, SelectionKey> entry = iteratora.next();
-                    //     System.out.println(entry.getKey() + ":" + entry.getValue());
+                    // Map.Entry<String, SelectionKey> entry = iteratora.next();
+                    // System.out.println(entry.getKey() + ":" + entry.getValue());
                     // }
 
                 }
@@ -69,9 +84,13 @@ public class Router {
                 while (iterator.hasNext()) {
                     key = iterator.next();
                     iterator.remove();
+                    errorSc = null;
                     if (key.isAcceptable()) {
                         int id = idGen.generateId();
                         SocketChannel sc = this.serverSocketChannel.accept();
+                        if (sc == null) {
+                            sc = this.serverSocketChannel2.accept();
+                        }
                         sc.configureBlocking(false);
                         sc.register(selector, SelectionKey.OP_READ);
                         System.out.println("Connection Accepted: " + sc.getLocalAddress() + "\n");
@@ -81,6 +100,7 @@ public class Router {
                     }
                     if (key.isReadable()) {
                         SocketChannel sc = (SocketChannel) key.channel();
+                        errorSc = sc;
                         ByteBuffer bb = ByteBuffer.allocate(1024);
                         sc.read(bb);
                         String result = new String(bb.array()).trim();
@@ -94,9 +114,19 @@ public class Router {
                         }
                     }
                 }
+            } catch (IOException err) {
+                if (errorSc != null) {
+                    key.cancel();  
+                    try {
+                        errorSc.socket().close();  
+                        errorSc.close(); 
+                         
+                    } catch (Exception e) {
+                       System.out.println("Inner exception" + e);
+                    }
+                }
+                System.out.println(err);
             }
-        } catch (IOException err) {
-            System.out.println(err);
         }
     }
 
