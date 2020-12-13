@@ -18,6 +18,7 @@ public class Market {
     private String brokerMessage = null;
     private Selector selector = null;
     private SocketChannel sc = null;
+    private Db db = new Db();
 
     public static void main(String[] args) {
         Market market = new Market();
@@ -149,6 +150,14 @@ public class Market {
 
     public void setId(String id) {
         Id = id;
+    }
+
+    public Db getDb() {
+        return db;
+    }
+
+    public void setDb(Db db) {
+        this.db = db;
     }
 
     // public void getInstruments() {

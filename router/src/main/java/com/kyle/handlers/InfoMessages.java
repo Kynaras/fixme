@@ -27,14 +27,24 @@ public class InfoMessages extends MessageHandler {
                 System.out.println("Gotcha!");
                 router.sendMessage(msg, key);
             }
-        } else if (message.contains("List good for market:")) {
+        } else if (message.contains("List instruments for market:")) {
            String [] array = message.split(":");
            if (router.getMarkets().containsKey(array[1].trim())) {
                router.sendMessage("List your instruments for:" + array[2], router.getMarkets().get(array[1].trim()));
            } else {
                router.sendMessage("No such market exists", key);
            }
-        } else if (nextHandler != null) {
+        } else if (message.contains("Here are the market instruments:")) {
+           String [] array = message.split(":");
+           router.sendMessage(array[2], router.getBrokers().get(array[1].trim()));
+        } else if (message.contains("Does this market exist:")) {
+            String [] array = message.split(":");
+            if (router.getMarkets().containsKey(array[1].trim())) {
+                router.sendMessage("Market does exist", key);
+            } else {
+                router.sendMessage("Market does not exist", key);
+            }
+         } else if (nextHandler != null) {
             nextHandler.handleMessage(message, key);
         }
     }

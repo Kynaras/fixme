@@ -12,11 +12,8 @@ public class InfoMessages extends MessageHandler {
         if (message.contains("List your instruments for:")) {
             String[] array = message.split(":");
             String brokerId = array[1];
-
-            System.out.println("The router has assigned you an ID. It is " + array[1]
-                    + ". Saving the ID for future reference and responding to Router...");
-            market.setId(array[1]);
-            market.sendMessage("I am Market:" + array[1].trim());
+            String instruments = market.getDb().getInstruments();
+            market.sendMessage("Here are the market instruments:" + brokerId + ":" + instruments);       
         } else if (nextHandler != null) {
             nextHandler.handleMessage(message);
         }

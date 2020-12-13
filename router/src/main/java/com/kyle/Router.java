@@ -51,16 +51,16 @@ public class Router {
             while (true) {
                 if (brokers != null) {
                     System.out.println("Dela");
-                    Iterator<Map.Entry<String, SelectionKey>> iterator = brokers.entrySet().iterator();
-                    while (iterator.hasNext()) {
-                        Map.Entry<String, SelectionKey> entry = iterator.next();
-                        System.out.println(entry.getKey() + ":" + entry.getValue());
-                    }
-                    Iterator<Map.Entry<String, SelectionKey>> iteratora = markets.entrySet().iterator();
-                    while (iteratora.hasNext()) {
-                        Map.Entry<String, SelectionKey> entry = iteratora.next();
-                        System.out.println(entry.getKey() + ":" + entry.getValue());
-                    }
+                    // Iterator<Map.Entry<String, SelectionKey>> iterator = brokers.entrySet().iterator();
+                    // while (iterator.hasNext()) {
+                    //     Map.Entry<String, SelectionKey> entry = iterator.next();
+                    //     System.out.println(entry.getKey() + ":" + entry.getValue());
+                    // }
+                    // Iterator<Map.Entry<String, SelectionKey>> iteratora = markets.entrySet().iterator();
+                    // while (iteratora.hasNext()) {
+                    //     Map.Entry<String, SelectionKey> entry = iteratora.next();
+                    //     System.out.println(entry.getKey() + ":" + entry.getValue());
+                    // }
 
                 }
                 selector.select();
@@ -109,6 +109,10 @@ public class Router {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public Map<String, SelectionKey> getBrokers() {
+        return brokers;
     }
 
     public void addBroker(String id, SelectionKey key) {

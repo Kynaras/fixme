@@ -16,15 +16,15 @@ public class Db {
     public Db(){
         //TODO
     }
-    public void getInstruments(){
-        String msg = "These are the instruments currently listed on the market:\n";
+    public String getInstruments(){
+        String msg = "**These are the instruments currently listed on the fruit market**\n";
     try
     {
         System.out.println("Connecting to database...");
         conn = DriverManager.getConnection(DB_URL, USER, PASS);
         System.out.println("Connected!");
         stmt = conn.createStatement();
-        sql = "SELECT * FROM instruments";
+        sql = "SELECT * FROM fruitMarket";
         ResultSet rs = stmt.executeQuery(sql);
 
         while (rs.next()) {
@@ -35,31 +35,35 @@ public class Db {
 
             // Display values
 
-            msg += ("type: " + type);
-            msg +=(", quantity: " + quantity);
-            msg +=(", price: " + price + "\n");
+            msg += ("TYPE " + type);
+            msg +=(" | QUANTITY " + quantity);
+            msg +=(" | PRICE " + price + "\n");
             // stmt.close();
             // conn.close();
         }
         rs.close();
     }catch(
-    Exception e)
-    {
-        System.out.println(e);
-    }finally
-    {
-        // finally block used to close resources
-        try {
-            if (stmt != null)
-                stmt.close();
-        } catch (SQLException se2) {
-        } // nothing we can do
-        try {
-            if (conn != null)
-                conn.close();
-        } catch (SQLException se) {
-            System.out.println(se);
+        Exception e)
+        {
+            System.out.println(e);
+        }finally
+        {
+            // finally block used to close resources
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (SQLException se2) {
+                System.out.println(se2);
+            } // nothing we can do
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                System.out.println(se);
+            }
         }
-    }
+        
+        return msg;
     }
 }
