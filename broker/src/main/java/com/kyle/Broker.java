@@ -25,6 +25,7 @@ public class Broker {
 
    private volatile boolean marketsRetrieve = false;
    private volatile boolean validMarket = false;
+   private volatile boolean validRequest = false;
 
    ExecutorService executor = Executors.newCachedThreadPool();
    UserInterface ui = new UserInterface(this);
@@ -182,5 +183,12 @@ public class Broker {
       }
    }
 
+   public void setValidRequest(boolean validRequest) {
+      this.validRequest = validRequest;
+   }
+
+   public boolean getValidRequest(){
+      return validRequest;
+   }
 
 }

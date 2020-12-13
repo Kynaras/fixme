@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 import com.kyle.Broker;
 import com.kyle.handlers.sendMessage;
+import com.kyle.Fix;
 
 public class UserInterface implements Runnable {
     private Broker broker;
+    private Fix fix;
     private String currentMarket;
     private boolean mainMenu = true;
     private boolean acceptableOption = false;
@@ -14,6 +16,7 @@ public class UserInterface implements Runnable {
 
     public UserInterface(Broker broker) {
         this.broker = broker;
+        this.fix = new Fix(broker);
     }
 
     @Override
@@ -48,7 +51,7 @@ public class UserInterface implements Runnable {
             // }
             while (!acceptableOption) {
                 System.out.println(
-                        "Your options are:\n1. Display instruments for a specific market \n2. List available markets. \n 3. Show your current cash and inventory");
+                        "Your options are:\n1. Display instruments for a specific market \n2. List available markets. \n3. Send a market request");
                 String s = input.nextLine();
                 parseInput(s);
             }
@@ -73,7 +76,7 @@ public class UserInterface implements Runnable {
                 }
                 break;
             case "3":
-                getStats();
+                makeRequest();
                 break;
             default:
                 System.out.println("Please choose options 1, 2 or 3 only");
@@ -91,7 +94,6 @@ public class UserInterface implements Runnable {
         String s = null;
         while (!broker.getValidMarket()) {
             try {
-                // getMarkets();
                 System.out.println("Please enter the ID of your market of choice.");
                 s = input.nextLine();
                 checkMarketExists(s);
@@ -101,14 +103,28 @@ public class UserInterface implements Runnable {
             }
         }
         if (s != null) {
-            System.out.println("Yay!");
             getSpecificMarket(s);
         }
         this.acceptableOption = false;
         // Todo
     }
 
-    public void getStats() {
-        // TODO
+    public void makeRequest() {
+        broker.setValidRequest(false);
+        String s = null;
+        while (!broker.getValidRequest()) {
+            try {
+                System.out.println("The syntax for a request is <BUY/SELL> <QTY> <TYPE> FOR <PRICE> IN <ID>");
+                s = input.nextLine();
+                fix.sendRequest(s);
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        if (s != null) {
+            getSpecificMarket(s);
+        }
+        this.acceptableOption = false;
     }
 }
