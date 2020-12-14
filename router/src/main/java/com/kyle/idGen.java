@@ -1,7 +1,7 @@
 package com.kyle;
 
 public class idGen {
-    private int id = 000000;
+    private int id = 500000;
 
     public idGen() {
         //Add if necessary

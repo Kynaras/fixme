@@ -4,8 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Fix {
-    public Fix(String message, String id){
-        //Maybe add check for zero length body
+    Router router;
+    public Fix(Router router){
+        this.router = router;
     }
     
     public String genAdminMessage(String message, String id){
@@ -21,7 +22,7 @@ public class Fix {
         return msg;
     }
 
-    private String checksumGen(String messagebody){
+    public String checksumGen(String messagebody){
         int bytes = messagebody.length();
         bytes = bytes % 256;
         String initialChecksum = Integer.toString(bytes);
@@ -35,7 +36,7 @@ public class Fix {
     }
 
     public boolean validateChecksum(String msg) {
-        String[] parts = msg.split("|");
+        String[] parts = msg.split("\\|");
         int checksumIndex = parts.length - 1 ;
         String messageWithoutChecksum = msg.replace(parts[checksumIndex], "");
         String[] checksum = parts[checksumIndex].split("=");

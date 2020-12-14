@@ -15,6 +15,8 @@ import com.kyle.handlers.sendMessage;
 import com.kyle.userinterface.UserInterface;
 
 public class Broker {
+
+   private Fix fix = new Fix(this);
    private static BufferedReader input = null;
    private Handlers messageHandlers = new Handlers(this);
    private String Id = null;
@@ -189,6 +191,14 @@ public class Broker {
 
    public boolean getValidRequest(){
       return validRequest;
+   }
+
+   public Fix getFix() {
+      return fix;
+   }
+
+   public void setFix(Fix fix) {
+      this.fix = fix;
    }
 
 }

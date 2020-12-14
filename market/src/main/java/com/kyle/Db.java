@@ -84,7 +84,7 @@ public class Db {
 
                 if (type.equalsIgnoreCase(instrument)){
                     if (quantity >= Integer.parseInt(qty)){
-                        if (price >= Integer.parseInt(priceReq)) {
+                        if (price <= Integer.parseInt(priceReq)) {
                             int leftover = quantity - Integer.parseInt(qty);
                         if (leftover <= 0)
                         {

@@ -44,7 +44,7 @@ public class Fix {
         broker.sendMessage(msg);
     }
     
-    private String checksumGen(String messagebody) {
+    public String checksumGen(String messagebody) {
         int bytes = messagebody.length();
         bytes = bytes % 256;
         String initialChecksum = Integer.toString(bytes);
@@ -92,7 +92,7 @@ public class Fix {
             return false;
         } else if (array[6].length() != 6 || !array[6].matches("[0-9]+")){
             System.out.println("Please only use NUMERIC values for market ID and ensure the ID is least 6 digits in length");
-            // return false;
+            return false;
         } 
         broker.setValidRequest(true);
         return true;

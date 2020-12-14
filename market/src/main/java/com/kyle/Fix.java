@@ -41,7 +41,7 @@ public class Fix {
         market.sendMessage(msg);
     }
     
-    private String checksumGen(String messagebody) {
+    public String checksumGen(String messagebody) {
         int bytes = messagebody.length();
         bytes = bytes % 256;
         String initialChecksum = Integer.toString(bytes);

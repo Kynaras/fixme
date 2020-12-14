@@ -1,6 +1,7 @@
 package com.kyle.handlers;
 
 import java.nio.channels.SelectionKey;
+import java.util.zip.Checksum;
 
 import com.kyle.Router;
 
@@ -10,10 +11,27 @@ public class FixMessages extends MessageHandler {
         super(router);
     }
 
+    public boolean checkSumCheck(String msgbody){
+        String [] array = msgbody.split("10=");
+        String [] checksumOriginal = array[1].split("\\|");
+        String checksum = router.getFix().checksumGen(array[0]);
+        System.out.println(checksumOriginal[0]);
+        System.out.println(checksum);
+        if (checksum.equals(checksumOriginal[0])) {
+            System.out.println("FIX message checksum was successfully validated");
+            return true;
+        }
+        System.out.println("The FIX message checksum was unable to be validated");
+        return false;
+    }
+
     @Override
     public void handleMessage(String message, SelectionKey key) {
         if (message.contains("8=FIX.4.4")) {
             System.out.println(message);
+            if (!checkSumCheck(message)){
+                return;
+            }
             String [] array = message.split("\\|");
             System.out.println(array[6]);
             String [] idArray = array[6].split("=");

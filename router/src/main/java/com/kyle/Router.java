@@ -15,6 +15,7 @@ import java.io.*;
 
 public class Router {
 
+    private Fix fix= new Fix(this);
     private Handlers messageHandlers = new Handlers(this);
     Selector selector;
     ServerSocketChannel serverSocketChannel;
@@ -155,5 +156,13 @@ public class Router {
 
     public Map<String, SelectionKey> getMarkets() {
         return markets;
+    }
+
+    public Fix getFix() {
+        return fix;
+    }
+
+    public void setFix(Fix fix) {
+        this.fix = fix;
     }
 }
