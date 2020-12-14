@@ -8,6 +8,9 @@ import java.util.*;
 
 import com.kyle.handlers.Handlers;
 
+import org.apache.commons.collections4.BidiMap;
+import org.apache.commons.collections4.bidimap.DualHashBidiMap;
+
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 
@@ -23,8 +26,8 @@ public class Router {
     SelectionKey key = null;
     SocketChannel errorSc;
     idGen idGen = new idGen();
-    Map<String, SelectionKey> brokers = new HashMap<>();
-    Map<String, SelectionKey> markets = new HashMap<>();
+    BidiMap<String, SelectionKey> brokers = new DualHashBidiMap<>();
+    BidiMap<String, SelectionKey> markets = new DualHashBidiMap<>();
 
     public static void main(String[] args) throws Exception {
         Router router = new Router();
@@ -117,7 +120,17 @@ public class Router {
                 }
             } catch (IOException err) {
                 if (errorSc != null) {
-                    key.cancel();  
+                    String id;
+                    if (brokers.getKey(key) != null){
+                        System.out.println("A broker has disconnected. Removing them from the broker table");
+                        id = brokers.getKey(key);
+                        brokers.remove(id);
+                    } else if (markets.getKey(key) != null) {
+                        System.out.println("A market has disconnect. Removing it from the market table");
+                        id = markets.getKey(key);
+                        markets.remove(id);
+                    }
+                    key.cancel();
                     try {
                         errorSc.socket().close();  
                         errorSc.close(); 

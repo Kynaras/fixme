@@ -19,4 +19,5 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/com/squareup/retrofit2/adapter-rxjava/2.1.0/adapter-rxjava-2.1.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/slf4j/slf4j-api/1.7.22/slf4j-api-1.7.22.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/microsoft/azure/azure-annotations/1.2.0/azure-annotations-1.2.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>
