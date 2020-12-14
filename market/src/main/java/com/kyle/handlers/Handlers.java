@@ -5,6 +5,7 @@ import com.kyle.Market;
 public class Handlers {
     AdminMessages adminMessages;
     InfoMessages infoMessages;
+    FixMessages fixMessages;
 
     public Handlers(Market market) {
         setup(market);
@@ -13,8 +14,10 @@ public class Handlers {
     public void setup(Market market) {
         adminMessages = new AdminMessages(market);
         infoMessages = new InfoMessages(market);
+        fixMessages = new FixMessages(market);
         adminMessages.setNextHandler(infoMessages);
-        infoMessages.setNextHandler(null);
+        infoMessages.setNextHandler(fixMessages);
+        fixMessages.setNextHandler(null);
     }
 
     public void handleMessage(String message){

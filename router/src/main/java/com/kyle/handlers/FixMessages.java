@@ -13,8 +13,11 @@ public class FixMessages extends MessageHandler {
     @Override
     public void handleMessage(String message, SelectionKey key) {
         if (message.contains("8=FIX.4.4")) {
-            String [] array = message.split("|");
-            String id = array[4];
+            System.out.println(message);
+            String [] array = message.split("\\|");
+            System.out.println(array[6]);
+            String [] idArray = array[6].split("=");
+            String id = idArray[1];
             if (router.getMarkets().containsKey(id)){
                 router.sendMessage(message, router.getMarkets().get(id));
             } else if (router.getBrokers().containsKey(id)) {

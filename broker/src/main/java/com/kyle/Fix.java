@@ -36,7 +36,7 @@ public class Fix {
         }
         msgBody = "34=1|52=" + timeStamp + "|56="+ array[6]+"|40=1|54="+type+"|55=ZAR|38="+array[1]+ "|58="+ array[2] +"|44="+array[4] +"|";
         bodyLength = msgBody.length();
-        String msgHeader = "49="+broker.getId().trim() +"|8=FIX.4.4|35=A|9=" + bodyLength + "|34=1|52=" + timeStamp + "|56="+ array[6]+"|";
+        String msgHeader = "49="+broker.getId().trim() +"|8=FIX.4.4|35=A|9=" + bodyLength + "|";
         msg = msgHeader+msgBody;
         checksum = checksumGen(msg);
         msg = msg + "10=" + checksum;
@@ -75,7 +75,7 @@ public class Fix {
             System.out.println("Your request is missing syntax values. Please check you have all elements required");
             return false;
         }
-        else if (!array[0].contains("buy") && array[0].contains("sell")) {
+        else if (!array[0].contains("buy") && !array[0].contains("sell")) {
             System.out.println("You can only BUY or SELL instruments at a market");
             return false;
         } else if (!array[1].matches("[0-9]+")){
@@ -92,7 +92,7 @@ public class Fix {
             return false;
         } else if (array[6].length() != 6 || !array[6].matches("[0-9]+")){
             System.out.println("Please only use NUMERIC values for market ID and ensure the ID is least 6 digits in length");
-            return false;
+            // return false;
         } 
         broker.setValidRequest(true);
         return true;
