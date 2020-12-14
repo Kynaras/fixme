@@ -12,7 +12,7 @@ public class Fix {
     }
 
     
-    public void sendExecuteReport(String brokerId) {
+    public void sendExecuteReport(String brokerId, int saved) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd-HH:mm:ss");
         LocalDateTime timeStamp = LocalDateTime.now();
         
@@ -26,7 +26,11 @@ public class Fix {
 
         if (market.getErrorReason() == null){
             type = 2;
-            typeMsg = "Your order has been completed successfully";
+            if (saved > 0) {
+                typeMsg = "Your order has been completed successfully. You saved:" + saved;
+            } else {
+                typeMsg = "Your order has been completed successfully";
+            }
         } else {
             type = 4;
             typeMsg = market.getErrorReason();
