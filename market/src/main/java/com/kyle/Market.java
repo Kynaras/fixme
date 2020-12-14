@@ -18,7 +18,9 @@ public class Market {
     private String brokerMessage = null;
     private Selector selector = null;
     private SocketChannel sc = null;
-    private Db db = new Db();
+    private Db db = new Db(this);
+    private Fix fix = new Fix(this);
+    private String errorReason;
 
     public static void main(String[] args) {
         Market market = new Market();
@@ -136,7 +138,7 @@ public class Market {
         try {
            sc.write(bb);
         } catch (Exception e) {
-           System.out.println(e);
+           System.out.println("Error??? " + e);
         }
      }
 
@@ -158,6 +160,18 @@ public class Market {
 
     public void setDb(Db db) {
         this.db = db;
+    }
+
+    public String getErrorReason() {
+        return errorReason;
+    }
+
+    public void setErrorReason(String errorReason) {
+        this.errorReason = errorReason;
+    }
+
+    public Fix getFix() {
+        return fix;
     }
 
     // public void getInstruments() {

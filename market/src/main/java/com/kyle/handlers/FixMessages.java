@@ -16,7 +16,7 @@ public class FixMessages extends MessageHandler {
     public void handleMessage(String message) {
         if (message.contains("8=FIX.4.4")) {
             String[] array = message.split("\\|");
-            String brokerId = array[6].split("=")[1];
+            String brokerId = array[0].split("=")[1];
             String type = array[8].split("=")[1];
             String price = array[12].split("=")[1];
             String qty = array[10].split("=")[1];
@@ -29,6 +29,12 @@ public class FixMessages extends MessageHandler {
                 // } else {
                 // System.out.println("Id provided in the FIX message does not exist!");
                 // }
+            } else if (type.contains("1")) {
+                System.out.println("Buying...");
+                if(market.getDb().checkBuyPossible(instrument, qty, price, brokerId)){
+                    System.out.println("Bought!");
+                }
+                market.getDb().buyInstrument(instrument, qty, price, brokerId);
             } else if (nextHandler != null) {
                 nextHandler.handleMessage(message);
             }
