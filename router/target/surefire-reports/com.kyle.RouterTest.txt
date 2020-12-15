@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.kyle.RouterTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.005 s <<< FAILURE! - in com.kyle.RouterTest
-socketClosedShouldBeFalse(com.kyle.RouterTest)  Time elapsed: 0.003 s  <<< ERROR!
-java.lang.NullPointerException
-	at com.kyle.RouterTest.socketClosedShouldBeFalse(RouterTest.java:14)
-

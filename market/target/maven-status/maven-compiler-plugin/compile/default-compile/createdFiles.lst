@@ -1,1 +1,10 @@
+com\kyle\handlers\Handlers.class
+com\kyle\handlers\MessageHandler.class
+com\kyle\handlers\FixMessages.class
+com\kyle\handlers\AdminMessages.class
+com\kyle\Market.class
 com\kyle\App.class
+com\kyle\handlers\InfoMessages.class
+com\kyle\Db.class
+com\kyle\Fix.class
+com\kyle\handlers\sendMessage.class

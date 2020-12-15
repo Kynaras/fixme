@@ -15,8 +15,6 @@ public class FixMessages extends MessageHandler {
         String [] array = msgbody.split("10=");
         String [] checksumOriginal = array[1].split("\\|");
         String checksum = router.getFix().checksumGen(array[0]);
-        System.out.println(checksumOriginal[0]);
-        System.out.println(checksum);
         if (checksum.equals(checksumOriginal[0])) {
             System.out.println("FIX message checksum was successfully validated");
             return true;
@@ -33,15 +31,17 @@ public class FixMessages extends MessageHandler {
                 return;
             }
             String [] array = message.split("\\|");
-            System.out.println(array[6]);
+            String [] senderArray = array[0].split("=");
             String [] idArray = array[6].split("=");
             String id = idArray[1];
+            String senderid = senderArray[1];
             if (router.getMarkets().containsKey(id)){
                 router.sendMessage(message, router.getMarkets().get(id));
             } else if (router.getBrokers().containsKey(id)) {
                 router.sendMessage(message, router.getBrokers().get(id));
             } else {
                 System.out.println("Id provided in the FIX message does not exist!");
+                router.sendMessage("ID provided for sender does not exist", key);
             }
         } else if (nextHandler != null) {
             nextHandler.handleMessage(message, key);

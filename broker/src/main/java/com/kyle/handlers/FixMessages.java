@@ -33,13 +33,13 @@ public class FixMessages extends MessageHandler {
                 return;
             }
             String[] array = message.split("\\|");
-            String brokerId = array[6].split("=")[1];
-            String type = array[8].split("=")[1];
-            String price = array[12].split("=")[1];
-            String qty = array[10].split("=")[1];
-            String instrument = array[11].split("=")[1];
-            String checksum = array[13].split("=")[1];
-           
+            String msg = array[8];
+            System.out.println("Order notification:" + msg);
+            if (msg.contains("saved")) {
+                String saved = msg.split(":")[1];
+                System.out.println("Adding the money saved back to your wallet");
+                broker.setWallet(broker.getWallet() + Integer.parseInt(saved));
+            }
         }
 
     }

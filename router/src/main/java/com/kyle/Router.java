@@ -67,7 +67,6 @@ public class Router {
             // }
             try {
                 if (brokers != null) {
-                    System.out.println("Dela");
                     // Iterator<Map.Entry<String, SelectionKey>> iterator =
                     // brokers.entrySet().iterator();
                     // while (iterator.hasNext()) {
@@ -108,7 +107,7 @@ public class Router {
                         ByteBuffer bb = ByteBuffer.allocate(1024);
                         sc.read(bb);
                         String result = new String(bb.array()).trim();
-                        // System.out.println("Message received: " + result + " Message length= " + result.length());
+                        System.out.println("Message received: " + result);
                         messageHandlers.handleMessage(result, key);
                         if (result.length() <= 0) {
                             sc.close();

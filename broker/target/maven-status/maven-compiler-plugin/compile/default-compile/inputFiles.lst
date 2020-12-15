@@ -1,5 +1,12 @@
 C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\ServerSide.java
+C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\handlers\sendMessage.java
 C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\App.java
-C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\Executor.java
+C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\handlers\Handlers.java
+C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\handlers\FixMessages.java
+C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\userinterface\UserInterface.java
+C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\Fix.java
+C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\BrokerUserInterface.java
+C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\handlers\InfoMessages.java
+C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\handlers\MessageHandler.java
 C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\Broker.java
-C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\NonBlockingClient.java
+C:\Users\kyle_\Documents\fixme\broker\src\main\java\com\kyle\handlers\AdminMessages.java

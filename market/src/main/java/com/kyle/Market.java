@@ -63,7 +63,7 @@ public class Market {
             sc.read(bb);
             String result = new String(bb.array()).trim();
             messageHandlers.handleMessage(result);
-            System.out.println("Message received from Router: " + result + " Message length= " + result.length());
+            System.out.println("Message received from Router: " + result);
             checkSelector();
         }
 

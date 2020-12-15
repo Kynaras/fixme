@@ -13,6 +13,7 @@ public class UserInterface implements Runnable {
     private boolean mainMenu = true;
     private boolean acceptableOption = false;
     private Scanner input = new Scanner(System.in);
+    private int wallet = 1000;
 
     public UserInterface(Broker broker) {
         this.broker = broker;

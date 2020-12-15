@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.kyle.AppTest" time="0.03" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.kyle.AppTest" time="0.034" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.specification.version" value="11"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\kyle_\Documents\fixme\market\target\test-classes;C:\Users\kyle_\Documents\fixme\market\target\classes;C:\Users\kyle_\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\kyle_\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.class.path" value="C:\Users\kyle_\Documents\fixme\market\target\test-classes;C:\Users\kyle_\Documents\fixme\market\target\classes;C:\Users\kyle_\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\kyle_\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\kyle_\.m2\repository\mysql\mysql-connector-java\8.0.22\mysql-connector-java-8.0.22.jar;C:\Users\kyle_\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;"/>
     <property name="java.vm.vendor" value="AdoptOpenJDK"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -17,9 +17,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ZA"/>
     <property name="sun.boot.library.path" value="C:\Users\kyle_\AppData\Local\Programs\AdoptOpenJDK\bin"/>
-    <property name="sun.java.command" value="C:\Users\kyle_\AppData\Local\Temp\surefire162108548408700992\surefirebooter17972183535042767662.jar C:\Users\kyle_\AppData\Local\Temp\surefire162108548408700992 2020-12-05T09-09-48_302-jvmRun1 surefire7563737784238197578tmp surefire_216585966371259900020tmp"/>
+    <property name="sun.java.command" value="C:\Users\kyle_\AppData\Local\Temp\surefire12763004720597588383\surefirebooter6371242401471397731.jar C:\Users\kyle_\AppData\Local\Temp\surefire12763004720597588383 2020-12-15T09-01-38_435-jvmRun1 surefire10402542882291274971tmp surefire_216312828251276540646tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\kyle_\Documents\fixme\market\target\test-classes;C:\Users\kyle_\Documents\fixme\market\target\classes;C:\Users\kyle_\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\kyle_\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\kyle_\Documents\fixme\market\target\test-classes;C:\Users\kyle_\Documents\fixme\market\target\classes;C:\Users\kyle_\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\kyle_\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\kyle_\.m2\repository\mysql\mysql-connector-java\8.0.22\mysql-connector-java-8.0.22.jar;C:\Users\kyle_\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\kyle_"/>
     <property name="user.language" value="en"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\kyle_\AppData\Local\Temp\surefire162108548408700992\surefirebooter17972183535042767662.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\kyle_\AppData\Local\Temp\surefire12763004720597588383\surefirebooter6371242401471397731.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.8+10"/>
@@ -53,7 +53,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="java.library.path" value="C:\Users\kyle_\AppData\Local\Programs\AdoptOpenJDK\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\kyle_\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\apache-maven-3.6.3\bin;C:\Program Files\apache-maven-3.6.3\bin;C:\Users\kyle_\AppData\Local\Programs\AdoptOpenJDK\bin;C:\Users\kyle_\AppData\Local\Microsoft\WindowsApps;C:\Users\kyle_\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="java.library.path" value="C:\Users\kyle_\AppData\Local\Programs\AdoptOpenJDK\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\kyle_\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\apache-maven-3.6.3\bin;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Program Files\apache-maven-3.6.3\bin;C:\Users\kyle_\AppData\Local\Programs\AdoptOpenJDK\bin;C:\Users\kyle_\AppData\Local\Microsoft\WindowsApps;C:\Users\kyle_\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\kyle_\.dotnet\tools;C:\Program Files\MySQL\MySQL Server 8.0\bin;."/>
     <property name="java.vm.info" value="mixed mode"/>
     <property name="java.vendor" value="AdoptOpenJDK"/>
     <property name="java.vm.version" value="11.0.8+10"/>

@@ -16,6 +16,7 @@ import com.kyle.userinterface.UserInterface;
 
 public class Broker {
 
+   private int wallet = 1000;
    private Fix fix = new Fix(this);
    private static BufferedReader input = null;
    private Handlers messageHandlers = new Handlers(this);
@@ -78,7 +79,7 @@ public class Broker {
          sc.read(bb);
          String result = new String(bb.array()).trim();
          messageHandlers.handleMessage(result);
-         System.out.println("Message received from Router: " + result + " Message length= " + result.length());
+         System.out.println("Message received from Router: " + result);
          checkSelector();
       }
 
@@ -199,6 +200,14 @@ public class Broker {
 
    public void setFix(Fix fix) {
       this.fix = fix;
+   }
+
+   public int getWallet() {
+      return wallet;
+   }
+
+   public void setWallet(int wallet) {
+      this.wallet = wallet;
    }
 
 }
