@@ -39,6 +39,10 @@ public class FixMessages extends MessageHandler {
                 String saved = msg.split(":")[1];
                 System.out.println("Adding the money saved back to your wallet");
                 broker.setWallet(broker.getWallet() + Integer.parseInt(saved));
+            } else  if (msg.contains("earned")) {
+                String saved = msg.split(":")[1];
+                System.out.println("Adding the money earned back to your wallet");
+                broker.setWallet(broker.getWallet() + Integer.parseInt(saved));
             }
         }
 

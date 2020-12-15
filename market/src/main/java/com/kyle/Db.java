@@ -181,16 +181,20 @@ public class Db {
                     int quantity = rs.getInt("quantity");
                     int price = rs.getInt("price");
                     int id = rs.getInt("id");
-
+                    String seller = rs.getString("seller");
                     if (type.equalsIgnoreCase(instrument) && price <= Integer.parseInt(priceReq)) {
                         if (quantity > amount) {
                             totalspent = calcSpent(totalspent, amount, price);
                             updateQty(id, quantity - amount);
+                            if (seller != null) 
+                                market.getFix().sendSaleExecuteReport(seller, amount * price);
                             amount = 0;
                         } else if (quantity < amount) {
                             totalspent = calcSpent(totalspent, quantity, price);
                             amount = amount - quantity;
                             removeInstrument(id);
+                            if (seller != null) 
+                                market.getFix().sendSaleExecuteReport(seller, quantity * price);
                         }
                     }
                 }
@@ -272,6 +276,7 @@ public class Db {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+            
         } catch (Exception e) {
             System.out.println("Removal error:" + e);
         }

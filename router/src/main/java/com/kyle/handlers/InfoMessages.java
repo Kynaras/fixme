@@ -32,7 +32,7 @@ public class InfoMessages extends MessageHandler {
            if (router.getMarkets().containsKey(array[1].trim())) {
                router.sendMessage("List your instruments for:" + array[2], router.getMarkets().get(array[1].trim()));
            } else {
-               router.sendMessage("No such market exists", key);
+               router.sendMessage("No such market exists. Given was " +array[1], key);
            }
         } else if (message.contains("Here are the market instruments:")) {
            String [] array = message.split(":");

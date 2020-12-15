@@ -51,6 +51,7 @@ public class UserInterface implements Runnable {
             // getMarkets();
             // }
             while (!acceptableOption) {
+                System.out.println("Your wallet currently has: " + broker.getWallet());
                 System.out.println(
                         "Your options are:\n1. Display instruments for a specific market \n2. List available markets. \n3. Send a market request");
                 String s = input.nextLine();

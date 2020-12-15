@@ -11,12 +11,10 @@ public class Fix {
         // Maybe add check for zero length body
     }
 
-    
     public void sendExecuteReport(String brokerId, int saved) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd-HH:mm:ss");
         LocalDateTime timeStamp = LocalDateTime.now();
-        
-     
+
         int type;
         int bodyLength;
         String checksum;
@@ -24,7 +22,7 @@ public class Fix {
         String msg;
         String typeMsg;
 
-        if (market.getErrorReason() == null){
+        if (market.getErrorReason() == null) {
             type = 2;
             if (saved > 0) {
                 typeMsg = "Your order has been completed successfully. You saved:" + saved;
@@ -35,49 +33,38 @@ public class Fix {
             type = 4;
             typeMsg = market.getErrorReason();
         }
-        msgBody = "34=1|52=" + timeStamp + "|56="+ brokerId +"|39=" + type + "|54="+typeMsg+"|";
+        msgBody = "34=1|52=" + timeStamp + "|56=" + brokerId + "|39=" + type + "|54=" + typeMsg + "|";
         bodyLength = msgBody.length();
-        String msgHeader = "49="+market.getId().trim() +"|8=FIX.4.4|35=8|9=" + bodyLength + "|";
-        msg = msgHeader+msgBody;
+        String msgHeader = "49=" + market.getId().trim() + "|8=FIX.4.4|35=8|9=" + bodyLength + "|";
+        msg = msgHeader + msgBody;
         checksum = checksumGen(msg);
         msg = msg + "10=" + checksum;
         System.out.println(msg);
         market.sendMessage(msg);
     }
-    
 
     public void sendSaleExecuteReport(String brokerId, int saved) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd-HH:mm:ss");
         LocalDateTime timeStamp = LocalDateTime.now();
-        
-     
+
         int type;
         int bodyLength;
         String checksum;
         String msgBody;
         String msg;
         String typeMsg;
+        typeMsg = "Your instrument has been sold successfully. You earned:" + saved;
 
-        if (market.getErrorReason() == null){
-            type = 2;
-            if (saved > 0) {
-                typeMsg = "Your order has been completed successfully. You saved:" + saved;
-            } else {
-                typeMsg = "Your sale order has been completed successfully.";
-            }
-        } else {
-            type = 4;
-            typeMsg = market.getErrorReason();
-        }
-        msgBody = "34=1|52=" + timeStamp + "|56="+ brokerId +"|39=" + type + "|54="+typeMsg+"|";
+        msgBody = "34=1|52=" + timeStamp + "|56=" + brokerId + "|39=" + 2 + "|54=" + typeMsg + "|";
         bodyLength = msgBody.length();
-        String msgHeader = "49="+market.getId().trim() +"|8=FIX.4.4|35=8|9=" + bodyLength + "|";
-        msg = msgHeader+msgBody;
+        String msgHeader = "49=" + market.getId().trim() + "|8=FIX.4.4|35=8|9=" + bodyLength + "|";
+        msg = msgHeader + msgBody;
         checksum = checksumGen(msg);
         msg = msg + "10=" + checksum;
         System.out.println(msg);
         market.sendMessage(msg);
     }
+
     public String checksumGen(String messagebody) {
         int bytes = messagebody.length();
         bytes = bytes % 256;
@@ -90,7 +77,7 @@ public class Fix {
         }
         return initialChecksum;
     }
-    
+
     public boolean validateChecksum(String msg) {
         String[] parts = msg.split("|");
         int checksumIndex = parts.length - 1;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.kyle.AppTest" time="0.034" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.kyle.AppTest" time="0.027" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ZA"/>
     <property name="sun.boot.library.path" value="C:\Users\kyle_\AppData\Local\Programs\AdoptOpenJDK\bin"/>
-    <property name="sun.java.command" value="C:\Users\kyle_\AppData\Local\Temp\surefire12763004720597588383\surefirebooter6371242401471397731.jar C:\Users\kyle_\AppData\Local\Temp\surefire12763004720597588383 2020-12-15T09-01-38_435-jvmRun1 surefire10402542882291274971tmp surefire_216312828251276540646tmp"/>
+    <property name="sun.java.command" value="C:\Users\kyle_\AppData\Local\Temp\surefire15693570091240208700\surefirebooter3676759845213178356.jar C:\Users\kyle_\AppData\Local\Temp\surefire15693570091240208700 2020-12-15T09-32-13_179-jvmRun1 surefire8654965853837870375tmp surefire_216696350190177591642tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\kyle_\Documents\fixme\market\target\test-classes;C:\Users\kyle_\Documents\fixme\market\target\classes;C:\Users\kyle_\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\kyle_\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\kyle_\.m2\repository\mysql\mysql-connector-java\8.0.22\mysql-connector-java-8.0.22.jar;C:\Users\kyle_\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\kyle_\AppData\Local\Temp\surefire12763004720597588383\surefirebooter6371242401471397731.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\kyle_\AppData\Local\Temp\surefire15693570091240208700\surefirebooter3676759845213178356.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.8+10"/>
