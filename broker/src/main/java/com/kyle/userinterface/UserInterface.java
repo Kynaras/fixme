@@ -24,7 +24,11 @@ public class UserInterface implements Runnable {
     public void run() {
         try {
             System.out.println("Starting up the user interface in its own thread.");
-            Thread.sleep(3000);
+                Thread.sleep(3000);
+                if (!broker.getConnected()){
+                    System.out.println("No router is present. Please start up a router first then restart broker");
+                    return;
+                }
             getMarkets();
             start();
         } catch (Exception e) {

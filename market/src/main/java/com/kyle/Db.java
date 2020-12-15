@@ -206,7 +206,8 @@ public class Db {
                 market.getFix().sendExecuteReport(brokerId, saved);
                 return true;
             }
-            market.setErrorReason("Not enough instruments within the price range to execute the order");
+            int refund =Integer.parseInt(qty) * Integer.parseInt(priceReq);
+            market.setErrorReason("Not enough instruments within the price range to execute the order:" + refund);
             market.getFix().sendExecuteReport(brokerId, 0);
             return false;
         } catch (Exception e) {

@@ -28,7 +28,7 @@ public class Market {
     }
 
     public Market() {
-        // TODO
+        // Nothing to add here
     }
 
     public void mainMarket() {

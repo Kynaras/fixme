@@ -29,6 +29,7 @@ public class Broker {
    private volatile boolean marketsRetrieve = false;
    private volatile boolean validMarket = false;
    private volatile boolean validRequest = false;
+   private volatile boolean routerConnected = false;
 
    ExecutorService executor = Executors.newCachedThreadPool();
    UserInterface ui = new UserInterface(this);
@@ -38,22 +39,13 @@ public class Broker {
 
 
    public void mainBroker() throws Exception {
-      // try {
+     
       System.out.println(
             "Hello, I am your friendly Broker. Please wait a moment while I set things up and connect to the Router");
       socketSetup();
       executor.submit(ui);
       checkSelector();
-      // } catch (IOException e) {
-      // System.out.println(e);
-      // } finally {
-      // if (sc != null) {
-      // sc.close();
-      // }
-      // if (selector != null) {
-      // selector.close();
-      // }
-      // }
+      
    }
 
    public Boolean processKeys(Set readySet) throws Exception {
@@ -71,6 +63,7 @@ public class Broker {
          } else {
             System.out.println("I have successfully connected with the router. Waiting to be assigned a broker ID...");
             key.interestOps(SelectionKey.OP_READ);
+            routerConnected = true;
             checkSelector();
          }
       }
@@ -122,13 +115,9 @@ public class Broker {
 
    private void checkSelector() {
       try {
-         // while (true) {
          if (selector.select() > 0) {
             Boolean doneStatus = processKeys(selector.selectedKeys());
-            // if (doneStatus) {
-            // break;
-            // }
-            // }
+       
          }
       } catch (Exception e) {
          System.out.println(e);
@@ -210,4 +199,7 @@ public class Broker {
       this.wallet = wallet;
    }
 
+   public boolean getConnected(){
+      return this.routerConnected;
+   }
 }

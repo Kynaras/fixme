@@ -16,13 +16,13 @@ public class FixMessages extends MessageHandler {
         String [] array = msgbody.split("10=");
         String [] checksumOriginal = array[1].split("\\|");
         String checksum = broker.getFix().checksumGen(array[0]);
-        System.out.println(checksumOriginal[0]);
-        System.out.println(checksum);
+        // System.out.println(checksumOriginal[0]);
+        // System.out.println(checksum);
         if (checksum.equals(checksumOriginal[0])) {
-            System.out.println("FIX message checksum was successfully validated");
+            // System.out.println("FIX message checksum was successfully validated");
             return true;
         }
-        System.out.println("The FIX message checksum was unable to be validated");
+        // System.out.println("The FIX message checksum was unable to be validated");
         return false;
     }
     @Override
@@ -34,16 +34,17 @@ public class FixMessages extends MessageHandler {
             }
             String[] array = message.split("\\|");
             String msg = array[8];
-            System.out.println("Order notification:" + msg);
+            String[] msgArray = msg.split("=");
+            System.out.println("Order notification:" + msgArray[1]);
             if (msg.contains("saved")) {
                 String saved = msg.split(":")[1];
                 System.out.println("Adding the money saved back to your wallet");
                 broker.setWallet(broker.getWallet() + Integer.parseInt(saved));
-            } else  if (msg.contains("earned")) {
+            } else  if (msg.contains("earned") || msg.contains("Not enough instruments within the price")) {
                 String saved = msg.split(":")[1];
                 System.out.println("Adding the money earned back to your wallet");
                 broker.setWallet(broker.getWallet() + Integer.parseInt(saved));
-            }
+            } 
         }
 
     }
