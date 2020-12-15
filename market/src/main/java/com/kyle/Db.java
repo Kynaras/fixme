@@ -70,6 +70,7 @@ public class Db {
 
     public boolean checkBuyPossible(String instrument, String qty, String priceReq, String brokerId) {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
             sql = "SELECT * FROM fruitMarket";
@@ -157,7 +158,7 @@ public class Db {
                 int id = rs.getInt("id");
 
                 if (type.equalsIgnoreCase(instrument) && price <= Integer.parseInt(priceReq)) {
-                    if (quantity > amount) {
+                    if (quantity >= amount) {
                         totalspent = calcSpent(totalspent, amount, price);
                         // updateQty(id, quantity - amount);
                         amount = 0;
@@ -170,6 +171,7 @@ public class Db {
             }
             rs.close();
             if (amount == 0) {
+                System.out.println("Got it!!!");
                 amount = Integer.parseInt(qty);
                 totalspent = 0;
                 saved = 0;

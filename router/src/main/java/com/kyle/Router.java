@@ -26,8 +26,8 @@ public class Router {
     SelectionKey key = null;
     SocketChannel errorSc;
     idGen idGen = new idGen();
-    BidiMap<String, SelectionKey> brokers = new DualHashBidiMap<>();
-    BidiMap<String, SelectionKey> markets = new DualHashBidiMap<>();
+    Map<String, SelectionKey> brokers = new HashMap<>();
+    Map<String, SelectionKey> markets = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
         Router router = new Router();
@@ -119,16 +119,16 @@ public class Router {
                 }
             } catch (IOException err) {
                 if (errorSc != null) {
-                    String id;
-                    if (brokers.getKey(key) != null){
-                        System.out.println("A broker has disconnected. Removing them from the broker table");
-                        id = brokers.getKey(key);
-                        brokers.remove(id);
-                    } else if (markets.getKey(key) != null) {
-                        System.out.println("A market has disconnect. Removing it from the market table");
-                        id = markets.getKey(key);
-                        markets.remove(id);
-                    }
+                    // String id;
+                    // if (brokers.getKey(key) != null){
+                    //     System.out.println("A broker has disconnected. Removing them from the broker table");
+                    //     id = brokers.getKey(key);
+                    //     brokers.remove(id);
+                    // } else if (markets.getKey(key) != null) {
+                    //     System.out.println("A market has disconnect. Removing it from the market table");
+                    //     id = markets.getKey(key);
+                    //     markets.remove(id);
+                    // }
                     key.cancel();
                     try {
                         errorSc.socket().close();  

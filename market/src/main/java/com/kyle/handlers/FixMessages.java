@@ -48,7 +48,7 @@ public class FixMessages extends MessageHandler {
                 // }
             } else if (type.contains("1")) {
                 System.out.println("Buying...");
-                if(market.getDb().checkBuyPossible(instrument, qty, price, brokerId)){
+                if(market.getDb().checkBuyMultiPossible(instrument, qty, price, brokerId)){
                     System.out.println("Bought!");
                 }
                 market.getDb().buyInstrument(instrument, qty, price, brokerId);
